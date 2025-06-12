@@ -1,0 +1,11 @@
+{% extends "ecole/base.html" %}
+{% block content %}
+  <h2>Importer des Absences (CSV)</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="csv_file" required>
+    <button type="submit">Importer</button>
+  </form>
+  <p>Format attendu : <code>id_etu,id_cours,justifie,justification</code></p>
+  <a href="{% url 'liste_absences' %}">Retour aux absences</a>
+{% endblock %}

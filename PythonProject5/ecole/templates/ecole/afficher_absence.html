@@ -1,0 +1,11 @@
+{% extends "ecole/base.html" %}
+{% block content %}
+  <h2>Détail de l'Absence</h2>
+  <p><strong>ID :</strong> {{ absence.id_absence }}</p>
+  <p><strong>Étudiant :</strong> {{ absence.etudiants }}</p>
+  <p><strong>Cours :</strong> {{ absence.cours }}</p>
+  <p><strong>Justifiée :</strong> {% if absence.justifie == 1 %}Oui{% else %}Non{% endif %}</p>
+  <p><strong>Justification :</strong> {{ absence.justification }}</p>
+  <a href="{% url 'modifier_absence' absence.id_absence %}">Modifier</a>
+  <a href="{% url 'liste_absences' %}">Retour à la liste</a>
+{% endblock %}
