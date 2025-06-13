@@ -2,19 +2,15 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'ecole/style.css' %}">
 </head>
-{% extends "ecole/base.html" %}
-{% block content %}
-    <h2>Étudiants</h2>
-    <a href="{% url 'ajouter_etudiant' %}">➕ Ajouter un étudiant</a>
-    <ul>
-        {% for etudiant in etudiants %}
-            <li>
-                {{ etudiant.prenom_etu }} {{ etudiant.nom_etu }} ({{ etudiant.groupe }})
-                <a href="{% url 'modifier_etudiant' etudiant.id_etu %}">✏️</a>
-                <a href="{% url 'supprimer_etudiant' etudiant.id_etu %}">🗑️</a>
-            </li>
-        {% empty %}
-            <li>Aucun étudiant</li>
-        {% endfor %}
-    </ul>
-{% endblock %}
+<h2>Liste des Groupes</h2>
+<a href="{% url 'ajouter_etudiant' %}">Ajouter un etudiant</a>
+<ul>
+{% for etudiant in liste_e %}
+    <li>
+        {{ etudiant.nom_etu}}
+
+    </li>
+    <a href="/ecole/update_etudiant/{{etudiant.id_etu}}/">Update</a>
+    <a href="/ecole/supprimer_etudiant/{{ etudiant.id_etu }}/">Supprimer</a>
+{% endfor %}
+</ul>

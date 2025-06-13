@@ -43,6 +43,22 @@ class Etudiants(models.Model):
     def __str__(self):
         return f"{self.prenom_etu} {self.nom_etu}"
 
+    def save(self, *args, **kwargs):
+        if not self.id_etu:
+            max_id = Etudiants.objects.all().aggregate(models.Max('id_etu'))['id_etu__max']
+            self.id_etu = 1 if max_id is None else max_id + 1
+        super(Etudiants, self).save(*args, **kwargs)
+
+    def dico(self):
+        return {
+            'id_etu': self.id_etu,
+            'nom_etu': self.nom_etu,
+            'prenom_etu': self.prenom_etu,
+            'mail_etu': self.mail_etu,
+            'groupe': self.groupe.dico() if self.groupe else None,
+            'photo': self.photo
+        }
+
     class Meta:
         managed = True
         db_table = 'etudiants'

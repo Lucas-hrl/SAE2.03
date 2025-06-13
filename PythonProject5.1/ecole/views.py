@@ -27,7 +27,7 @@ def liste_groupes(request):
     return render(request, "ecole/liste_groupes.html", {"liste_g":liste_groupe})
 
 def afficher_groupe(request,id):
-    groupe= models.Groupe.objects.get(pk=id)
+    groupe= models.Groupe.objects.get(id_gr=id)
     return render (request, "ecole/afficher_groupe.html", {"groupe": groupe})
 
 def update_groupe(request,id):
@@ -56,39 +56,39 @@ def ajouter_etudiant(request):
     form = EtudiantForm()
     return render(request, "ecole/ajouter_etudiant.html", {"form": form})
 
-def traitement_groupe(request):
+def traitement_etudiant(request):
     form = EtudiantForm(request.POST)
     if form.is_valid():
         Etudiants = form.save()
-        return HttpResponseRedirect("/ecole/liste_groupes")
+        return HttpResponseRedirect("/ecole/liste_etudiants")
     else:
-        return render(request,"ecole/ajouter_groupe.html/", {"form":form})
+        return render(request,"ecole/ajouter_etudiant.html/", {"form":form})
 
-def liste_groupes(request):
-    liste_groupe = list(models.Groupe.objects.all())
-    return render(request, "ecole/liste_groupes.html", {"liste_g":liste_groupe})
+def liste_etudiants(request):
+    liste_etudiants = list(models.Etudiants.objects.all())
+    return render(request, "ecole/liste_etudiants.html", {"liste_e":liste_etudiants})
 
-def afficher_groupe(request,id):
-    groupe= models.Groupe.objects.get(pk=id)
-    return render (request, "ecole/afficher_groupe.html", {"groupe": groupe})
+def afficher_etudiant(request,id):
+    etudiant= models.Etudiants.objects.get(id_etu=id)
+    return render (request, "ecole/afficher_etudiant.html", {"etudiant": etudiant})
 
-def update_groupe(request,id):
-    groupe = models.Groupe.objects.get(id_gr=id)
-    dico= groupe.dico()
-    form = GroupeForm(dico)
-    return render(request,"ecole/ajouter_groupe.html", {"form":form, "id":id})
+def update_etudiant(request,id):
+    etudiant = models.Etudiants.objects.get(id_etu=id)
+    dico= etudiant.dico()
+    form = EtudiantForm(dico)
+    return render(request,"ecole/ajouter_etudiant.html", {"form":form, "id":id})
 
-def traitement_update_groupe(request, id):
-    groupe_existant = models.Groupe.objects.get(id_gr=id)
-    gform = GroupeForm(request.POST, instance=groupe_existant)  # Utilisation de instance
-    if gform.is_valid():
-        groupe = gform.save()
-        return HttpResponseRedirect("/ecole/liste_groupes")
+def traitement_update_etudiant(request, id):
+    etudiant_existant = models.Etudiants.objects.get(id_etu=id)
+    eform = EtudiantForm(request.POST, instance=etudiant_existant)  # Utilisation de instance
+    if eform.is_valid():
+        etudiant = eform.save()
+        return HttpResponseRedirect("/ecole/liste_etudiants")
     else:
-        return render(request, "ecole/ajouter_groupe.html", {"gform": gform, "id": id})
+        return render(request, "ecole/ajouter_etudiant.html", {"eform": eform, "id": id})
 
-def supprimer_groupe(request,id):
-    groupe = models.Groupe.objects.get(id_gr=id)
-    groupe.delete()
-    return HttpResponseRedirect("/ecole/liste_groupes")
+def supprimer_etudiant(request,id):
+    etudiant = models.Etudiants.objects.get(id_etu=id)
+    etudiant.delete()
+    return HttpResponseRedirect("/ecole/liste_etudiants")
 
