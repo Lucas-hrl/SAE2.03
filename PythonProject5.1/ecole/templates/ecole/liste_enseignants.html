@@ -7,7 +7,7 @@
 <ul>
 {% for enseignant in liste_en %}
     <li>
-        {{ enseignant.prenom }} {{ enseignant.nom_etu}}
+        {{ enseignant.prenom_ens }} {{ enseignant.nom_ens}}
 
     </li>
     <a href="/ecole/update_enseignant/{{enseignant.id_ens}}/">Update</a>
