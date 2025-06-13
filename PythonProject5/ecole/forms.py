@@ -24,8 +24,8 @@ class EtudiantForm(forms.ModelForm):
         }
 
         widgets = {
-            'nom_etu': forms.TextInput(attrs={'class': 'class_css_input', "placeholder': 'Nom de l'étudiant…"}),
-            'prenom_etu': forms.TextInput(attrs={'class': 'class_css_input', "placeholder': 'Prénom de l'étudiant…"}),
+            'nom_etu': forms.TextInput(attrs={'class': 'class_css_input', 'placeholder': "Nom de l'étudiant…"}),
+            'prenom_etu': forms.TextInput(attrs={'class': 'class_css_input', 'placeholder': "Prénom de l'étudiant…"}),
             'mail_etu': forms.EmailInput(),
             'groupe': forms.Select(attrs={'class': 'class_css_input'}),
             'photo': forms.FileInput(attrs={'class': 'class_css_input'}),
@@ -41,8 +41,8 @@ class EnseignantForm(forms.ModelForm):
             'mail_ens': 'E-mail'
         }
         widgets = {
-            'nom_ens': forms.TextInput(attrs={'class': 'class_css_input', "placeholder': 'Nom de l'enseignant…"}),
-            'prenom_ens': forms.TextInput(attrs={'class': 'class_css_input', "placeholder': 'Prénom de l'enseignant…"}),
+            'nom_ens': forms.TextInput(attrs={'class': 'class_css_input', 'placeholder': "Nom de l'enseignant…"}),
+            'prenom_ens': forms.TextInput(attrs={'class': 'class_css_input', 'placeholder': "Prénom de l'enseignant…"}),
             'mail_ens': forms.EmailInput(),
         }
 
@@ -58,7 +58,7 @@ class CoursForm(forms.ModelForm):
             'duree_cours': 'Durée'
         }
         widgets = {
-            'titre_cours': forms.TextInput(attrs={'class': 'class_css_input', "placeholder': 'Titre du cours…"}),
+            'titre_cours': forms.TextInput(attrs={'class': 'class_css_input', 'placeholder': "Titre du cours…"}),
             'date_cours': forms.DateInput(),
             'enseignants': forms.Select(attrs={'class': 'class_css_input'}),
             'groupe': forms.Select(attrs={'class': 'class_css_input'}),
