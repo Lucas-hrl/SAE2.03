@@ -47,9 +47,9 @@ class EnseignantForm(forms.ModelForm):
         }
 
 class CoursForm(forms.ModelForm):
-    duree_cours = forms.CharField(
+    duree_cours = forms.TimeField(
         required=False,
-        widget=forms.TextInput(attrs={'placeholder': 'HH:MM:SS'}),
+        widget=forms.TimeInput(format='%H:%M'),
         label='Durée',
     )
     class Meta:

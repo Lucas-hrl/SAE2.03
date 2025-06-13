@@ -10,5 +10,5 @@
   <p><strong>Date :</strong> {{ cours.date_cours }}</p>
   <p><strong>Enseignant :</strong> {{ cours.enseignants }}</p>
   <p><strong>Groupe :</strong> {{ cours.groupe }}</p>
-  <p><strong>Durée :</strong> {{ cours.duree_cours }}</p>
+  <p><strong>Durée :</strong> {{ cours.duree_cours|time:"H:i"}}h</p>
 {% endblock %}

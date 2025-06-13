@@ -98,7 +98,7 @@ class Cours(models.Model):
     date_cours = models.DateField()
     enseignants = models.ForeignKey(Enseignants, models.DO_NOTHING, db_column='enseignants', blank=True, null=True)
     groupe = models.ForeignKey(Groupe, models.DO_NOTHING, db_column='groupe', blank=True, null=True)
-    duree_cours = models.DurationField(blank=True, null=True)
+    duree_cours = models.TimeField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
         if not self.id_cours:
