@@ -93,3 +93,4 @@ def supprimer_groupe(request,id):
     return HttpResponseRedirect("/ecole/liste_groupes")
 
 
+
