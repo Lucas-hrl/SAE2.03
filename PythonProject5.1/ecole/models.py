@@ -134,6 +134,21 @@ class Absences(models.Model):
     def __str__(self):
         return f"Absence de {self.etudiants} au cours {self.cours}"
 
+    def save(self, *args, **kwargs):
+        if not self.id_absence:
+            max_id = Absences.objects.all().aggregate(models.Max('id_absence'))['id_absence__max']
+            self.id_absence = 1 if max_id is None else max_id + 1
+        super(Absences, self).save(*args, **kwargs)
+
+    def dico(self):
+        return {
+            'id_absence': self.id_absence,
+            'etudiants': self.etudiants.dico() if self.etudiants else None,
+            'cours': self.cours.dico() if self.cours else None,
+            'justification': self.justification,
+            'justifie': self.justifie,
+        }
+
     class Meta:
         managed = True
         db_table = 'absences'
