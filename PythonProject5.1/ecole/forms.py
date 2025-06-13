@@ -59,10 +59,10 @@ class CoursForm(forms.ModelForm):
         }
         widgets = {
             'titre_cours': forms.TextInput(attrs={'class': 'class_css_input', 'placeholder': "Titre du cours…"}),
-            'date_cours': forms.DateInput(),
+            'date_cours': forms.SelectDateWidget(),
             'enseignants': forms.Select(attrs={'class': 'class_css_input'}),
             'groupe': forms.Select(attrs={'class': 'class_css_input'}),
-            'duree_cours': forms.TimeInput(),
+            'duree_cours': forms.TimeInput(attrs={'type': 'time' , 'placeholder': 'HH:MM:SS','step':'1'}),
         }
 
 class AbsenceForm(forms.ModelForm):

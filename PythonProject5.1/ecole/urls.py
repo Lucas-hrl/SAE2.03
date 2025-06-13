@@ -41,5 +41,14 @@ urlpatterns = [
     path("traitement_update_cours/<int:id>/",views.traitement_update_cours,name="traitement_update_cours"),
     path("supprimer_cours/<int:id>/",views.supprimer_cours),
 
+    #CRUD absences
+    path("ajouter_absence/", views.ajouter_absence, name="ajouter_absence"),
+    path("traitement_absence/",views.traitement_absence,name="traitement_absence"),
+    path("liste_absences/",views.liste_absences,name="liste_absences"),
+    path("afficher_absence/<int:id>/", views.afficher_absence),
+    path("update_absence/<int:id>/",views.update_absence),
+    path("traitement_update_absence/<int:id>/",views.traitement_update_absence),
+    path("supprimer_absence/<int:id>/",views.supprimer_absence),
+
 
 ]

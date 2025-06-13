@@ -178,3 +178,45 @@ def supprimer_cours(request,id):
     cours.delete()
     return HttpResponseRedirect("/ecole/liste_cours")
 
+
+#Absences
+def ajouter_absence(request):
+    form = AbsenceForm()
+    return render(request, "ecole/ajouter_absence.html", {"form": form})
+
+def traitement_absence(request):
+    form = AbsenceForm(request.POST)
+    if form.is_valid():
+        Absence = form.save()
+        return HttpResponseRedirect("/ecole/liste_absence")
+    else:
+        return render(request,"ecole/ajouter_absence.html/", {"form":form})
+
+def liste_absences(request):
+    liste_absences = list(models.Absences.objects.all())
+    return render(request, "ecole/liste_absences.html", {"liste_ab":liste_absences})
+
+def afficher_absence(request,id):
+    cours= models.Absences.objects.get(id_absence=id)
+    return render (request, "ecole/afficher_absence.html", {"absence": absence})
+
+def update_absence(request,id):
+    absence = models.Absences.objects.get(id_absence=id)
+    dico= absence.dico()
+    form = AbsenceForm(dico)
+    return render(request,"ecole/ajouter_absence.html", {"form":form, "id":id})
+
+def traitement_update_absence(request, id):
+    absence_existant = models.Absences.objects.get(id_absence=id)
+    abform = AbsenceForm(request.POST, instance=absence_existant)  # Utilisation de instance
+    if abform.is_valid():
+        absence = abform.save()
+        return HttpResponseRedirect("/ecole/liste_absence")
+    else:
+        return render(request, "ecole/ajouter_absence.html", {"abform": abform, "id": id})
+
+def supprimer_absence(request,id):
+    absence = models.Absences.objects.get(id_absence=id)
+    absence.delete()
+    return HttpResponseRedirect("/ecole/liste_absence")
+
