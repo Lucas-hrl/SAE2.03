@@ -12,12 +12,24 @@ class Groupe(models.Model):
     id_gr = models.AutoField(primary_key=True)
     nom_gr = models.CharField(max_length=100)
 
+    def save(self, *args, **kwargs):
+        if not self.id_gr:
+            max_id = Groupe.objects.all().aggregate(models.Max('id_gr'))['id_gr__max']
+            self.id_gr = 1 if max_id is None else max_id + 1
+        super(Groupe, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.nom_gr
 
     class Meta:
         managed = True
         db_table = 'groupe'
+
+    def dico(self):
+        return {
+            'id_gr': self.id_gr,
+            'nom_gr': self.nom_gr
+        }
 
 
 class Etudiants(models.Model):

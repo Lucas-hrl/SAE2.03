@@ -30,23 +30,23 @@ def afficher_groupe(request,id):
     return render (request, "ecole/afficher_groupe.html", {"groupe": groupe})
 
 def update_groupe(request,id):
-    groupe = models.Groupe.objects.get(pk=id)
+    groupe = models.Groupe.objects.get(id_gr=id)
     dico= groupe.dico()
     form = GroupeForm(dico)
     return render(request,"ecole/ajouter_groupe.html", {"form":form, "id":id})
 
-def traitement_update_groupe (request,id):
-    gform = GroupeForm(request.POST)
+def traitement_update_groupe(request, id):
+    groupe_existant = models.Groupe.objects.get(id_gr=id)
+    gform = GroupeForm(request.POST, instance=groupe_existant)  # Utilisation de instance
     if gform.is_valid():
-        Groupe = gform.save(commit = False)
-        Groupe.id = id
-        Groupe.save()
+        groupe = gform.save()
         return HttpResponseRedirect("/ecole/liste_groupes")
     else:
-        return render(request, "ecole/ajouter_groupe.html", {"gform": gform , "id":id})
+        return render(request, "ecole/ajouter_groupe.html", {"gform": gform, "id": id})
+
 
 def supprimer_groupe(request,id):
-    groupe = models.Groupe.objects.get(pk=id)
+    groupe = models.Groupe.objects.get(id_gr=id)
     groupe.delete()
     return HttpResponseRedirect("/ecole/liste_groupes")
 
