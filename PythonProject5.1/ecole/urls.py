@@ -32,5 +32,14 @@ urlpatterns = [
     path("traitement_update_enseignant/<int:id>/",views.traitement_update_enseignant),
     path("supprimer_enseignant/<int:id>/",views.supprimer_enseignant),
 
+    #CRUD enseignants
+    path("ajouter_cours/", views.ajouter_cours, name="ajouter_cours"),
+    path("traitement_cours/",views.traitement_cours,name="traitement_cours"),
+    path("liste_cours/",views.liste_cours,name="liste_cours"),
+    path("afficher_cours/<int:id>/",views.afficher_cours,name="afficher_cours"),
+    path("update_cours/<int:id>/",views.update_cours),
+    path("traitement_update_cours/<int:id>/",views.traitement_update_cours,name="traitement_update_cours"),
+    path("supprimer_cours/<int:id>/",views.supprimer_cours),
+
 
 ]

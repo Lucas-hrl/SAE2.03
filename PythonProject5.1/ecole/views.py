@@ -134,3 +134,47 @@ def supprimer_enseignant(request,id):
     enseignant.delete()
     return HttpResponseRedirect("/ecole/liste_enseignants")
 
+
+
+
+#Cours
+def ajouter_cours(request):
+    form = CoursForm()
+    return render(request, "ecole/ajouter_cours.html", {"form": form})
+
+def traitement_cours(request):
+    form = CoursForm(request.POST)
+    if form.is_valid():
+        Cours = form.save()
+        return HttpResponseRedirect("/ecole/liste_cours")
+    else:
+        return render(request,"ecole/ajouter_cours.html/", {"form":form})
+
+def liste_cours(request):
+    liste_cours = list(models.Cours.objects.all())
+    return render(request, "ecole/liste_cours.html", {"liste_c":liste_cours})
+
+def afficher_cours(request,id):
+    cours= models.Cours.objects.get(id_cours=id)
+    return render (request, "ecole/afficher_cours.html", {"cours": cours})
+
+def update_cours(request,id):
+    enseignant = models.Enseignants.objects.get(id_cours=id)
+    dico= cours.dico()
+    form = CoursForm(dico)
+    return render(request,"ecole/ajouter_cours.html", {"form":form, "id":id})
+
+def traitement_update_cours(request, id):
+    cours_existant = models.Cours.objects.get(id_cours=id)
+    cform = CoursForm(request.POST, instance=cours_existant)  # Utilisation de instance
+    if cform.is_valid():
+        cours = cform.save()
+        return HttpResponseRedirect("/ecole/liste_cours")
+    else:
+        return render(request, "ecole/ajouter_cours.html", {"cform": cform, "id": id})
+
+def supprimer_cours(request,id):
+    cours = models.Cours.objects.get(id_cours=id)
+    cours.delete()
+    return HttpResponseRedirect("/ecole/liste_cours")
+

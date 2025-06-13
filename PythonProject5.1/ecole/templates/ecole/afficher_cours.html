@@ -2,7 +2,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'ecole/style.css' %}">
 </head>
-{% extends "ecole/base.html" %}
+
 {% block content %}
   <h2>Détail du Cours</h2>
   <p><strong>ID :</strong> {{ cours.id_cours }}</p>
@@ -11,6 +11,4 @@
   <p><strong>Enseignant :</strong> {{ cours.enseignants }}</p>
   <p><strong>Groupe :</strong> {{ cours.groupe }}</p>
   <p><strong>Durée :</strong> {{ cours.duree_cours }}</p>
-  <a href="{% url 'modifier_cours' cours.id_cours %}">Modifier</a>
-  <a href="{% url 'liste_cours' %}">Retour à la liste</a>
 {% endblock %}

@@ -100,6 +100,22 @@ class Cours(models.Model):
     groupe = models.ForeignKey(Groupe, models.DO_NOTHING, db_column='groupe', blank=True, null=True)
     duree_cours = models.TimeField(blank=True, null=True)
 
+    def save(self, *args, **kwargs):
+        if not self.id_cours:
+            max_id = Cours.objects.all().aggregate(models.Max('id_cours'))['id_cours__max']
+            self.id_cours = 1 if max_id is None else max_id + 1
+        super(Cours, self).save(*args, **kwargs)
+
+    def dico(self):
+        return {
+            'id_cours': self.id_cours,
+            'titre_cours': self.titre_cours,
+            'date_cours': self.date_cours,
+            'enseignants': self.enseignants.dico() if self.enseignants else None,
+            'groupe': self.groupe.dico() if self.groupe else None,
+            'duree_cours': self.duree_cours
+        }
+
     def __str__(self):
         return f"{self.titre_cours} - {self.date_cours}"
 
