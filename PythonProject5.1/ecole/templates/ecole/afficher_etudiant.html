@@ -1,0 +1,16 @@
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'ecole/style.css' %}">
+</head>
+{% extends "ecole/base.html" %}
+{% block content %}
+  <h2>Détail de l'Étudiant</h2>
+  <p><strong>ID :</strong> {{ etudiant.id_etu }}</p>
+  <p><strong>Nom :</strong> {{ etudiant.nom_etu }}</p>
+  <p><strong>Prénom :</strong> {{ etudiant.prenom_etu }}</p>
+  <p><strong>Email :</strong> {{ etudiant.mail_etu }}</p>
+  <p><strong>Groupe :</strong> {{ etudiant.groupe }}</p>
+  <p><strong>Photo :</strong> {{ etudiant.photo }}</p>
+  <a href="{% url 'modifier_etudiant' etudiant.id_etu %}">Modifier</a>
+  <a href="{% url 'liste_etudiants' %}">Retour à la liste</a>
+{% endblock %}

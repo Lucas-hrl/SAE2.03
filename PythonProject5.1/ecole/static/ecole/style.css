@@ -1,0 +1,160 @@
+/* ecole/static/ecole/style.css */
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f4f8fb;
+    color: #2d3142;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #25396f;
+    color: #fff;
+    padding: 24px 0 12px 0;
+    text-align: center;
+    border-bottom: 5px solid #ef8354;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: #ef8354;
+    text-decoration: none;
+    margin: 0 16px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+nav a:hover {
+    color: #ffd166;
+}
+
+main {
+    max-width: 750px;
+    margin: 32px auto 0 auto;
+    background: #fff;
+    padding: 32px 40px 24px 40px;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px #25396f1c;
+    min-height: 75vh;
+}
+
+h2 {
+    color: #25396f;
+    border-left: 7px solid #ef8354;
+    padding-left: 13px;
+    font-size: 2rem;
+    margin-bottom: 22px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+li {
+    padding: 10px 0;
+    border-bottom: 1px solid #e4e4e4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+a, button {
+    transition: 0.2s;
+}
+a.button,
+button,
+input[type="submit"] {
+    background: #ef8354;
+    color: #fff;
+    border: none;
+    padding: 7px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    margin-right: 7px;
+    margin-left: 7px;
+    text-decoration: none;
+    font-size: 1rem;
+}
+a.button:hover,
+button:hover,
+input[type="submit"]:hover {
+    background: #25396f;
+    color: #fff;
+}
+
+form {
+    margin: 25px 0 20px 0;
+}
+form input,
+form select,
+form textarea {
+    display: block;
+    width: 100%;
+    padding: 9px 10px;
+    margin-bottom: 15px;
+    border: 1.2px solid #b6bcc9;
+    border-radius: 6px;
+    background: #f6f6fa;
+    font-size: 1rem;
+}
+
+form input[type="file"] {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+form button, form input[type="submit"] {
+    width: auto;
+    margin-top: 0;
+}
+
+footer {
+    text-align: center;
+    background: #25396f;
+    color: #fff;
+    padding: 13px 0 7px 0;
+    margin-top: 40px;
+    border-top: 3px solid #ef8354;
+    font-size: 1rem;
+    letter-spacing: 0.7px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+/* Icônes */
+li a {
+    font-size: 1.13rem;
+}
+li a:not(:last-child) {
+    margin-right: 4px;
+}
+
+p code {
+    background: #f1f2f7;
+    color: #ef8354;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 1.03rem;
+}
+
+@media (max-width: 800px) {
+    main {
+        max-width: 98vw;
+        padding: 10px 3vw;
+    }
+    nav a {
+        display: inline-block;
+        margin: 7px 5px;
+    }
+}

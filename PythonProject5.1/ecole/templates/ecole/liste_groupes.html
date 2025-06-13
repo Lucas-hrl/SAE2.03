@@ -1,0 +1,16 @@
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'ecole/style.css' %}">
+</head>
+<h2>Liste des Groupes</h2>
+<a href="{% url 'ajouter_groupe' %}">Ajouter un groupe</a>
+<ul>
+{% for groupe in liste_g %}
+    <li>
+        {{ groupe.nom_gr}}
+
+    </li>
+    <a href="/ecole/update_groupe/{{groupe.id_gr}}/">Update</a>
+    <a href="/ecole/supprimer_groupe/{{ groupe.id_gr }}/">Supprimer</a>
+{% endfor %}
+</ul>

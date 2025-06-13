@@ -1,0 +1,32 @@
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'ecole/style.css' %}">
+</head>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'artistes/style.css' %}">
+    <meta charset="UTF-8">
+    <title>Ajout d'album</title>
+</head>
+<body>
+    <header>
+        <h1>Formulaire de saisie / modification des groupes :</h1>
+    </header>
+
+    <div class="form-container">
+        {% if not id %}
+            <form class="form" action="/ecole/traitement_groupe/" method="POST">
+        {% else %}
+            <form class="form" action="/ecole/traitement_update_groupe/{{id}}/" method="POST">
+        {% endif %}
+            {% csrf_token %}
+            {{ form.as_ul }} <!-- permet d'afficher tous les champs sous forme d'une liste -->
+            <input type="submit" class="bouton_ajout" value="Envoyer les données">
+        </form>
+    <a href="{% url 'liste_groupes' %}">Retour à la liste</a>
+    </div>
+
+
+

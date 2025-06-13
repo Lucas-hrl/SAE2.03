@@ -1,0 +1,14 @@
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'ecole/style.css' %}">
+</head>
+{% extends "ecole/base.html" %}
+{% block content %}
+  <h2>Modifier le Cours</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Sauvegarder</button>
+  </form>
+  <a href="{% url 'liste_cours' %}">Retour</a>
+{% endblock %}
