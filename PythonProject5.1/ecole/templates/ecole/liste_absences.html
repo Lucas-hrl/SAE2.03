@@ -1,0 +1,24 @@
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'ecole/style.css' %}">
+</head>
+{% extends "ecole/base.html" %}
+{% block content %}
+  <h2>Liste des Absences</h2>
+  <a href="{% url 'ajouter_absence' %}">➕ Ajouter une absence</a>
+  <a href="{% url 'import_absences' %}">⬆️ Import CSV</a>
+  <ul>
+    {% for absence in absences %}
+      <li>
+        <a href="{% url 'afficher_absence' absence.id_absence %}">
+            {{ absence.etudiants }} - {{ absence.cours }} -
+            {% if absence.justifie == 1 %}Justifiée{% else %}Non justifiée{% endif %}
+        </a>
+        <a href="{% url 'modifier_absence' absence.id_absence %}">✏️</a>
+        <a href="{% url 'supprimer_absence' absence.id_absence %}">🗑️</a>
+      </li>
+    {% empty %}
+      <li>Aucune absence</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

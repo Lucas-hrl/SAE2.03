@@ -1,0 +1,20 @@
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'ecole/style.css' %}">
+</head>
+{% extends "ecole/base.html" %}
+{% block content %}
+  <h2>Fiche d'absences de {{ etudiant }}</h2>
+  <ul>
+    {% for absence in absences %}
+      <li>
+        Cours : {{ absence.cours }} /
+        {% if absence.justifie == 1 %}Justifiée{% else %}Non justifiée{% endif %} /
+        {{ absence.justification }}
+      </li>
+    {% endfor %}
+  </ul>
+  <p>Total justifiées : {{ total_justifiees }}</p>
+  <p>Total non justifiées : {{ total_non_justifiees }}</p>
+  <a href="{% url 'liste_etudiants' %}">Retour</a>
+{% endblock %}
