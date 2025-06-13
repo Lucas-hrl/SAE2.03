@@ -92,5 +92,3 @@ def supprimer_groupe(request,id):
     groupe.delete()
     return HttpResponseRedirect("/ecole/liste_groupes")
 
-
-
