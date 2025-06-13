@@ -3,7 +3,7 @@
 <ul>
 {% for groupe in liste_g %}
     <li>
-        {{ groupe.nom_gr}}
+        {{groupe.id_gr }} {{ groupe.nom_gr}}
 
     </li>
     <a href="/ecole/update_groupe/{{groupe.id_gr}}/">Update</a>

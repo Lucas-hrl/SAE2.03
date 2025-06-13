@@ -14,8 +14,8 @@ class Groupe(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.id_gr:
-            max_id = Groupe.objects.all().aggregate(models.Max('id_gr'))['id_gr__max']
-            self.id_gr = 1 if max_id is None else max_id + 1
+            last_id = Groupe.objects.count()
+            self.id_gr = last_id + 1
         super(Groupe, self).save(*args, **kwargs)
 
     def __str__(self):
