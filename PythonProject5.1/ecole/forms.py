@@ -47,6 +47,11 @@ class EnseignantForm(forms.ModelForm):
         }
 
 class CoursForm(forms.ModelForm):
+    duree_cours = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={'placeholder': 'HH:MM:SS'}),
+        label='Durée',
+    )
     class Meta:
         model = Cours
         fields = ['titre_cours', 'date_cours', 'enseignants', 'groupe', 'duree_cours']
@@ -62,7 +67,6 @@ class CoursForm(forms.ModelForm):
             'date_cours': forms.SelectDateWidget(),
             'enseignants': forms.Select(attrs={'class': 'class_css_input'}),
             'groupe': forms.Select(attrs={'class': 'class_css_input'}),
-            'duree_cours': forms.TimeInput(attrs={'type': 'time' , 'placeholder': 'HH:MM:SS','step':'1'}),
         }
 
 class AbsenceForm(forms.ModelForm):

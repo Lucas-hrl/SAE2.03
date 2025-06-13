@@ -13,7 +13,7 @@
 
     <div class="form-container">
         {% if not id %}
-            <form class="form" action="/ecole/traitement_absence/" method="POST">
+            <form class="form" action="/ecole/traitement_absence/" method="POST" enctype="multipart/form-data>
         {% else %}
             <form class="form" action="/ecole/traitement_update_absence/{{id}}/" method="POST">
         {% endif %}

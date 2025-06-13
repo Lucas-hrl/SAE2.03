@@ -13,7 +13,7 @@
 
     <div class="form-container">
         {% if not id %}
-            <form class="form" action="/ecole/traitement_etudiant/" method="POST">
+            <form class="form" action="/ecole/traitement_etudiant/" method="POST" enctype="multipart/form-data">
         {% else %}
             <form class="form" action="/ecole/traitement_update_etudiant/{{id}}/" method="POST">
         {% endif %}

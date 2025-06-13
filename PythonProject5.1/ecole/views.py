@@ -57,7 +57,7 @@ def ajouter_etudiant(request):
     return render(request, "ecole/ajouter_etudiant.html", {"form": form})
 
 def traitement_etudiant(request):
-    form = EtudiantForm(request.POST)
+    form = EtudiantForm(request.POST, request.FILES)
     if form.is_valid():
         Etudiants = form.save()
         return HttpResponseRedirect("/ecole/liste_etudiants")

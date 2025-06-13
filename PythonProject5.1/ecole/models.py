@@ -38,7 +38,7 @@ class Etudiants(models.Model):
     prenom_etu = models.CharField(max_length=100)
     mail_etu = models.EmailField(unique=True, max_length=150)
     groupe = models.ForeignKey(Groupe, models.DO_NOTHING, db_column='groupe', blank=True, null=True)
-    photo = models.CharField(max_length=255, blank=True, null=True)
+    photo = models.ImageField(upload_to="etudiants/", blank=True, null=True)
 
     def __str__(self):
         return f"{self.prenom_etu} {self.nom_etu}"
@@ -98,7 +98,7 @@ class Cours(models.Model):
     date_cours = models.DateField()
     enseignants = models.ForeignKey(Enseignants, models.DO_NOTHING, db_column='enseignants', blank=True, null=True)
     groupe = models.ForeignKey(Groupe, models.DO_NOTHING, db_column='groupe', blank=True, null=True)
-    duree_cours = models.TimeField(blank=True, null=True)
+    duree_cours = models.DurationField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
         if not self.id_cours:
