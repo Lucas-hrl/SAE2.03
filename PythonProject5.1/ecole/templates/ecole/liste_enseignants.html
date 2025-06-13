@@ -2,19 +2,16 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'ecole/style.css' %}">
 </head>
-{% extends "ecole/base.html" %}
-{% block content %}
-  <h2>Liste des Enseignants</h2>
-  <a href="{% url 'ajouter_enseignant' %}">➕ Ajouter un enseignant</a>
-  <ul>
-    {% for enseignant in enseignants %}
-      <li>
-        <a href="{% url 'afficher_enseignant' enseignant.id_ens %}">{{ enseignant.prenom_ens }} {{ enseignant.nom_ens }}</a>
-        <a href="{% url 'modifier_enseignant' enseignant.id_ens %}">✏️</a>
-        <a href="{% url 'supprimer_enseignant' enseignant.id_ens %}">🗑️</a>
-      </li>
-    {% empty %}
-      <li>Aucun enseignant trouvé</li>
-    {% endfor %}
-  </ul>
-{% endblock %}
+<h2>Liste des Enseignants</h2>
+<a href="{% url 'ajouter_enseignant' %}">Ajouter un enseignant</a>
+<ul>
+{% for enseignant in liste_en %}
+    <li>
+        {{ enseignant.prenom }} {{ enseignant.nom_etu}}
+
+    </li>
+    <a href="/ecole/update_enseignant/{{enseignant.id_ens}}/">Update</a>
+    <a href="/ecole/supprimer_enseignant/{{enseignant.id_ens}}/">Supprimer</a>
+    <a href="/ecole/afficher_enseignant/{{enseignant.id_ens}}/">Affichage détails…</a>
+{% endfor %}
+</ul>

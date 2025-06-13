@@ -92,3 +92,45 @@ def supprimer_etudiant(request,id):
     etudiant.delete()
     return HttpResponseRedirect("/ecole/liste_etudiants")
 
+
+#Enseignant
+def ajouter_enseignant(request):
+    form = EnseignantForm()
+    return render(request, "ecole/ajouter_enseignant.html", {"form": form})
+
+def traitement_enseignant(request):
+    form = EnseignantForm(request.POST)
+    if form.is_valid():
+        Enseignant = form.save()
+        return HttpResponseRedirect("/ecole/liste_enseignants")
+    else:
+        return render(request,"ecole/ajouter_enseignant.html/", {"form":form})
+
+def liste_enseignants(request):
+    liste_enseignants = list(models.Enseignants.objects.all())
+    return render(request, "ecole/liste_enseignants.html", {"liste_en":liste_enseignants})
+
+def afficher_enseignant(request,id):
+    enseignant= models.Enseignants.objects.get(id_ens=id)
+    return render (request, "ecole/afficher_enseignant.html", {"enseignant": enseignant})
+
+def update_enseignant(request,id):
+    enseignant = models.Enseignants.objects.get(id_ens=id)
+    dico= enseignant.dico()
+    form = EnseignantForm(dico)
+    return render(request,"ecole/ajouter_enseignant.html", {"form":form, "id":id})
+
+def traitement_update_enseignant(request, id):
+    enseignant_existant = models.Enseignants.objects.get(id_ens=id)
+    enform = EnseignantForm(request.POST, instance=enseignant_existant)  # Utilisation de instance
+    if enform.is_valid():
+        enseignant = enform.save()
+        return HttpResponseRedirect("/ecole/liste_enseignants")
+    else:
+        return render(request, "ecole/ajouter_enseignant.html", {"enform": enform, "id": id})
+
+def supprimer_enseignant(request,id):
+    enseignant = models.Enseignants.objects.get(id_ens=id)
+    enseignant.delete()
+    return HttpResponseRedirect("/ecole/liste_enseignants")
+

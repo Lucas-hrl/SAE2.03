@@ -73,6 +73,20 @@ class Enseignants(models.Model):
     def __str__(self):
         return f"{self.prenom_ens} {self.nom_ens}"
 
+    def save(self, *args, **kwargs):
+        if not self.id_ens:
+            max_id = Enseignants.objects.all().aggregate(models.Max('id_ens'))['id_ens__max']
+            self.id_ens = 1 if max_id is None else max_id + 1
+        super(Enseignants, self).save(*args, **kwargs)
+
+    def dico(self):
+        return {
+            'id_ens': self.id_ens,
+            'nom_ens': self.nom_ens,
+            'prenom_ens': self.prenom_ens,
+            'mail_ens': self.mail_ens
+        }
+
     class Meta:
         managed = True
         db_table = 'enseignants'
