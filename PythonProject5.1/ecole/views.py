@@ -220,3 +220,4 @@ def supprimer_absence(request,id):
     absence.delete()
     return HttpResponseRedirect("/ecole/liste_absences")
 
+
