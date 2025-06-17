@@ -80,7 +80,7 @@ def update_etudiant(request,id):
 
 def traitement_update_etudiant(request, id):
     etudiant_existant = models.Etudiants.objects.get(id_etu=id)
-    eform = EtudiantForm(request.POST, instance=etudiant_existant)  # Utilisation de instance
+    eform = EtudiantForm(request.POST,request.FILES, instance=etudiant_existant)  # Utilisation de instance
     if eform.is_valid():
         etudiant = eform.save()
         return HttpResponseRedirect("/ecole/liste_etudiants")
@@ -208,7 +208,7 @@ def update_absence(request,id):
 
 def traitement_update_absence(request, id):
     absence_existant = models.Absences.objects.get(id_absence=id)
-    abform = AbsenceForm(request.POST, instance=absence_existant)  # Utilisation de instance
+    abform = AbsenceForm(request.POST, request.FILES ,instance=absence_existant)  # Utilisation de instance
     if abform.is_valid():
         absence = abform.save()
         return HttpResponseRedirect("/ecole/liste_absences")
