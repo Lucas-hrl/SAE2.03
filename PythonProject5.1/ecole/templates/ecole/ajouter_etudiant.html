@@ -15,7 +15,7 @@
         {% if not id %}
             <form class="form" action="/ecole/traitement_etudiant/" method="POST" enctype="multipart/form-data">
         {% else %}
-            <form class="form" action="/ecole/traitement_update_etudiant/{{id}}/" method="POST">
+            <form class="form" action="/ecole/traitement_update_etudiant/{{id}}/" method="POST" enctype="multipart/form-data">
         {% endif %}
             {% csrf_token %}
             {{ form.as_ul }} <!-- permet d'afficher tous les champs sous forme d'une liste -->

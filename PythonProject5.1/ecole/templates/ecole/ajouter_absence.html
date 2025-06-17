@@ -13,9 +13,9 @@
 
     <div class="form-container">
         {% if not id %}
-            <form class="form" action="/ecole/traitement_absence/" method="POST" enctype="multipart/form-data>
+            <form class="form" action="/ecole/traitement_absence/" method="POST" enctype="multipart/form-data">
         {% else %}
-            <form class="form" action="/ecole/traitement_update_absence/{{id}}/" method="POST">
+            <form class="form" action="/ecole/traitement_update_absence/{{id}}/" method="POST" enctype="multipart/form-data">
         {% endif %}
             {% csrf_token %}
             {{ form.as_ul }} <!-- permet d'afficher tous les champs sous forme d'une liste -->

@@ -159,7 +159,7 @@ def afficher_cours(request,id):
     return render (request, "ecole/afficher_cours.html", {"cours": cours})
 
 def update_cours(request,id):
-    enseignant = models.Enseignants.objects.get(id_cours=id)
+    cours = models.Cours.objects.get(id_cours=id)
     dico= cours.dico()
     form = CoursForm(dico)
     return render(request,"ecole/ajouter_cours.html", {"form":form, "id":id})
@@ -185,10 +185,10 @@ def ajouter_absence(request):
     return render(request, "ecole/ajouter_absence.html", {"form": form})
 
 def traitement_absence(request):
-    form = AbsenceForm(request.POST)
+    form = AbsenceForm(request.POST, request.FILES)
     if form.is_valid():
         Absence = form.save()
-        return HttpResponseRedirect("/ecole/liste_absence")
+        return HttpResponseRedirect("/ecole/liste_absences")
     else:
         return render(request,"ecole/ajouter_absence.html/", {"form":form})
 
@@ -211,12 +211,12 @@ def traitement_update_absence(request, id):
     abform = AbsenceForm(request.POST, instance=absence_existant)  # Utilisation de instance
     if abform.is_valid():
         absence = abform.save()
-        return HttpResponseRedirect("/ecole/liste_absence")
+        return HttpResponseRedirect("/ecole/liste_absences")
     else:
         return render(request, "ecole/ajouter_absence.html", {"abform": abform, "id": id})
 
 def supprimer_absence(request,id):
     absence = models.Absences.objects.get(id_absence=id)
     absence.delete()
-    return HttpResponseRedirect("/ecole/liste_absence")
+    return HttpResponseRedirect("/ecole/liste_absences")
 

@@ -128,8 +128,8 @@ class Absences(models.Model):
     id_absence = models.AutoField(primary_key=True)
     etudiants = models.ForeignKey(Etudiants, models.DO_NOTHING, db_column='etudiants', blank=True, null=True)
     cours = models.ForeignKey(Cours, models.DO_NOTHING, db_column='cours', blank=True, null=True)
-    justifie = models.IntegerField(blank=True, null=True)
-    justification = models.CharField(max_length=255, blank=True, null=True)
+    justifie = models.BooleanField(blank=True, null=True)
+    justification = models.FileField(upload_to='justification/', blank=True, null=True)
 
     def __str__(self):
         return f"Absence de {self.etudiants} au cours {self.cours}"
