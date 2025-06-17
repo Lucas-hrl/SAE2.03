@@ -197,7 +197,7 @@ def liste_absences(request):
     return render(request, "ecole/liste_absences.html", {"liste_ab":liste_absences})
 
 def afficher_absence(request,id):
-    cours= models.Absences.objects.get(id_absence=id)
+    absence= models.Absences.objects.get(id_absence=id)
     return render (request, "ecole/afficher_absence.html", {"absence": absence})
 
 def update_absence(request,id):

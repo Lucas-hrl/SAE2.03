@@ -8,5 +8,5 @@
   <p><strong>Étudiant :</strong> {{ absence.etudiants }}</p>
   <p><strong>Cours :</strong> {{ absence.cours }}</p>
   <p><strong>Justifiée :</strong> {% if absence.justifie == 1 %}Oui{% else %}Non{% endif %}</p>
-  <p><strong>Justification :</strong> {{ absence.justification }}</p>
+  <p><strong>Justification :</strong> <a href="/media/{{ absence.justification }}" download>Télécharger</a></p>
 {% endblock %}

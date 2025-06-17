@@ -10,7 +10,7 @@
   <p><strong>Prénom :</strong> {{ etudiant.prenom_etu }}</p>
   <p><strong>Email :</strong> {{ etudiant.mail_etu }}</p>
   <p><strong>Groupe :</strong> {{ etudiant.groupe }}</p>
-  <p><strong>Photo :</strong> {{ etudiant.photo }}</p>
+  <p><strong>Photo :</strong> <img src="/media/{{ etudiant.photo }}" width="200" ></p>
 {% endblock %}
 
     <a href="/ecole/ajouter_etudiant/">Ajouter un nouvel etudiant</a>

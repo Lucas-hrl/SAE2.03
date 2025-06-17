@@ -67,6 +67,7 @@ class CoursForm(forms.ModelForm):
             'date_cours': forms.SelectDateWidget(),
             'enseignants': forms.Select(attrs={'class': 'class_css_input'}),
             'groupe': forms.Select(attrs={'class': 'class_css_input'}),
+            'duree_cours': forms.TimeInput(attrs={'placeholder': "Durée "})
         }
 
 class AbsenceForm(forms.ModelForm):
