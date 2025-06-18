@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Étudiants</title>
+    <link rel="stylesheet" href="{% static 'ecole/style.css' %}">
+</head>
+<body>
+    <div class="liste-main" style="max-width:700px; margin:auto;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:27px;">
+            <h2 style="margin:0;">Liste des Étudiants</h2>
+            <a href="{% url 'ajouter_etudiant' %}" class="btn-action" style="font-size:15px;">➕ Ajouter</a>
+        </div>
+        <ul style="list-style:none; padding:0;">
+            {% for etudiant in liste_e %}
+                <li style="margin-bottom:17px;">
+                    <div style="background:#fff; border-radius:15px; box-shadow:0 3px 13px #1469a31a; display:flex; align-items:center; justify-content:space-between; padding:18px 22px;">
+                        <span>
+                            <b>{{ etudiant.prenom_etu }} {{ etudiant.nom_etu }}</b>
+                        </span>
+                        <span style="display:flex; gap:10px;">
+                            <a href="{% url 'update_etudiant' etudiant.id_etu %}" class="btn-action">✏️</a>
+                            <a href="{% url 'supprimer_etudiant' etudiant.id_etu %}" class="btn-action">🗑️</a>
+                            <a href="{% url 'afficher_etudiant' etudiant.id_etu %}" class="btn-action">👁️</a>
+                        </span>
+                    </div>
+                </li>
+            {% empty %}
+                <li style="color:#888; text-align:center;">Aucun étudiant enregistré</li>
+            {% endfor %}
+        </ul>
+        <div style="text-align:center; margin-top:26px;">
+            <a href="{% url 'index' %}" class="btn-action">🏠 Accueil</a>
+        </div>
+    </div>
+</body>
+</html>
