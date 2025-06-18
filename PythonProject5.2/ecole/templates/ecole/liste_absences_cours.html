@@ -1,14 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Absences pour le cours {{ cours.titre_cours }}</title>
-    <style>
-        body { font-family: Arial; padding: 20px; }
-        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
-        th { background-color: #f0f0f0; }
-    </style>
+     <link rel="stylesheet" href="{% static 'ecole/style.css' %}">
 </head>
 <body>
     <h2>Liste des absents pour le cours : {{ cours.titre_cours }}</h2>
@@ -42,5 +38,8 @@
             {% endfor %}
         </tbody>
     </table>
+    <div style="display:flex; gap:12px; justify-content:center; margin-top:18px;">
+        <a href="{% url 'index' %}" class="btn-action">🏠 Accueil</a>
+    </div>
 </body>
 </html>
