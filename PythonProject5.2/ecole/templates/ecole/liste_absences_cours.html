@@ -4,42 +4,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Absences pour le cours {{ cours.titre_cours }}</title>
-     <link rel="stylesheet" href="{% static 'ecole/style.css' %}">
+    <link rel="stylesheet" href="{% static 'ecole/style.css' %}">
 </head>
 <body>
-    <h2>Liste des absents pour le cours : {{ cours.titre_cours }}</h2>
-    <p><strong>Date :</strong> {{ cours.date_cours }}</p>
+    <div class="detail-box">
+        <h2>Liste des absents</h2>
+        
+        <div class="detail-info">
+            <p><strong>Cours :</strong> {{ cours.titre_cours }}</p>
+            <p><strong>Date :</strong> {{ cours.date_cours }}</p>
+            <p><strong>Enseignant :</strong> {{ cours.enseignant.prenom_ens }} {{ cours.enseignant.nom_ens }}</p>
+        </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Justifiée</th>
-                <th>Justificatif</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for absence in absences %}
-            <tr>
-                <td>{{ absence.etudiants.nom_etu }}</td>
-                <td>{{ absence.etudiants.prenom_etu }}</td>
-                <td>{% if absence.justifie %}Oui{% else %}Non{% endif %}</td>
-                <td>
-                    {% if absence.justification %}
-                        <a href="{{ absence.justification.url }}" target="_blank">Voir</a>
-                    {% else %}
-                        Aucun
-                    {% endif %}
-                </td>
-            </tr>
-            {% empty %}
-            <tr><td colspan="4">Aucune absence enregistrée pour ce cours.</td></tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <div style="display:flex; gap:12px; justify-content:center; margin-top:18px;">
-        <a href="{% url 'index' %}" class="btn-action">🏠 Accueil</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Justifiée</th>
+                    <th>Justificatif</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for absence in absences %}
+                <tr>
+                    <td>{{ absence.etudiants.nom_etu }}</td>
+                    <td>{{ absence.etudiants.prenom_etu }}</td>
+                    <td>
+                        {% if absence.justifie %}
+                            <span class="status-badge justifie">Oui</span>
+                        {% else %}
+                            <span class="status-badge non-justifie">Non</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if absence.justification %}
+                            <a href="{{ absence.justification.url }}" target="_blank">📄 Voir</a>
+                        {% else %}
+                            <span style="color: #6c757d; font-style: italic;">Aucun</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">Aucune absence enregistrée pour ce cours.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <div class="nav-buttons">
+            <a href="{% url 'index' %}" class="btn-action">🏠 Accueil</a>
+            <a href="{% url 'liste_cours' %}" class="btn-action">📖 Cours</a>
+            <a href="{% url 'liste_absences' %}" class="btn-action">📅 Absences</a>
+        </div>
     </div>
 </body>
 </html>
