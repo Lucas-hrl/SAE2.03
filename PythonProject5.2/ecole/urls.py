@@ -50,5 +50,6 @@ urlpatterns = [
     path("traitement_update_absence/<int:id>/",views.traitement_update_absence),
     path("supprimer_absence/<int:id>/",views.supprimer_absence, name = "supprimer_absence"),
 
-
+    path('etudiant/<int:etudiant_id>/absences/', views.fiche_absence, name='fiche_absence'),
+    path('cours/<int:cours_id>/absences/', views.liste_absences_cours, name='liste_absences_cours'),
 ]

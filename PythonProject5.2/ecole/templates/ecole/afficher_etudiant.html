@@ -19,6 +19,7 @@
       Aucune photo
     {% endif %}
   </p>
+    <p><a href="{% url 'fiche_absence' etudiant.id_etu %}">Liste absence</a></p>
   <div style="display:flex; gap:12px; justify-content:center; margin-top:18px;">
       <a href="{% url 'liste_etudiants' %}" class="btn-action">Retour à la liste</a>
       <a href="{% url 'ajouter_etudiant' %}" class="btn-action">+ Ajouter étudiant</a>
