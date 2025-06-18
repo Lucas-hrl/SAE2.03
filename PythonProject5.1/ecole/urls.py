@@ -51,4 +51,7 @@ urlpatterns = [
     path("supprimer_absence/<int:id>/",views.supprimer_absence),
 
 
+    path('etudiant/<int:etudiant_id>/absences/', views.fiche_absence, name='fiche_absence'),
+    path('cours/<int:cours_id>/absences/', views.liste_absences_cours, name='liste_absences_cours'),
+
 ]

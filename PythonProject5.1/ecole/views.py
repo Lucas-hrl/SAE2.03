@@ -1,8 +1,9 @@
 from .models import Groupe, Etudiants, Enseignants, Cours, Absences
 from .forms import GroupeForm, EtudiantForm, EnseignantForm, CoursForm, AbsenceForm
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from . import models
+
 
 # Page d'accueil
 def index (request):
@@ -221,3 +222,20 @@ def supprimer_absence(request,id):
     return HttpResponseRedirect("/ecole/liste_absences")
 
 
+def fiche_absence(request, etudiant_id):
+    etudiant = get_object_or_404(Etudiants, pk=etudiant_id)
+    absences = Absences.objects.filter(etudiants=etudiant).select_related('cours')
+
+    return render(request, 'ecole/fiche_absence.html', {
+        'etudiant': etudiant,
+        'absences': absences,
+    })
+
+def liste_absences_cours(request, cours_id):
+    cours = get_object_or_404(Cours, pk=cours_id)
+    absences = Absences.objects.filter(cours=cours).select_related('etudiants')
+
+    return render(request, 'ecole/liste_absences_cours.html', {
+        'cours': cours,
+        'absences': absences,
+    })
