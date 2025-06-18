@@ -1,0 +1,38 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'ecole/style.css' %}">
+    <meta charset="UTF-8">
+    <title>Fiche d'absences</title>
+</head>
+{% extends "ecole/base.html" %}
+{% block content %}
+<div class="detail-box" style="max-width:500px;margin:auto;">
+  <h2 style="margin-bottom:25px;">Fiche d'absences de <span style="color:#0a5691;">{{ etudiant }}</span></h2>
+  <ul style="padding:0; list-style:none;">
+    {% for absence in absences %}
+      <li style="background:#fff;border-radius:12px;box-shadow:0 3px 13px #1469a31a;padding:14px 19px;margin-bottom:15px;">
+        <b>Cours :</b> {{ absence.cours }}<br>
+        <b>Justification :</b>
+        {% if absence.justifie == 1 %}
+          <span style="color:#249b42;font-weight:600;">Justifiée</span>
+        {% else %}
+          <span style="color:#c62424;font-weight:600;">Non justifiée</span>
+        {% endif %}
+        {% if absence.justification %}
+          <span style="display:block;font-size:13px; margin-top:3px;">({{ absence.justification }})</span>
+        {% endif %}
+      </li>
+    {% empty %}
+      <li style="color:#888; text-align:center;">Aucune absence trouvée pour cet étudiant</li>
+    {% endfor %}
+  </ul>
+  <div style="display:flex;gap:18px;justify-content:center;margin-top:18px;">
+    <span class="stat-abs" style="background:#e0faea;">Total justifiées : <b>{{ total_justifiees }}</b></span>
+    <span class="stat-abs" style="background:#fde7e7;">Total non justifiées : <b>{{ total_non_justifiees }}</b></span>
+  </div>
+  <div style="text-align:center;margin-top:22px;">
+    <a href="{% url 'liste_etudiants' %}" class="btn-action">Retour</a>
+    <a href="{% url 'index' %}" class="btn-action">🏠 Accueil</a>
+  </div>
+</div>
+{% endblock %}

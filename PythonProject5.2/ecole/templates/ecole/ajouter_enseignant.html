@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="{% static 'ecole/style.css' %}">
+    <meta charset="UTF-8">
+    <title>Ajout / Modif Enseignant</title>
+</head>
+<body>
+    <header>
+        <h1>Formulaire de saisie / modification des enseignants</h1>
+    </header>
+    <div class="form-container">
+        {% if not id %}
+            <form class="form" action="/ecole/traitement_enseignant/" method="POST">
+        {% else %}
+            <form class="form" action="/ecole/traitement_update_enseignant/{{id}}/" method="POST">
+        {% endif %}
+            {% csrf_token %}
+            {{ form.as_ul }}
+            <input type="submit" class="bouton_ajout" value="Envoyer les données">
+        </form>
+        <a href="{% url 'liste_enseignants' %}" class="btn-action" style="margin-top:16px; display:inline-block;">Retour à la liste</a>
+    </div>
+</body>
+</html>

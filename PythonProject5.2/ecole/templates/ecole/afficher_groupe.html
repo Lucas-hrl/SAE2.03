@@ -1,0 +1,18 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'ecole/style.css' %}">
+    <meta charset="UTF-8">
+    <title>Détail du Groupe</title>
+</head>
+<body>
+<div class="detail-box">
+  <h2>Détail du Groupe</h2>
+  <p><strong>ID :</strong> {{ groupe.id_gr }}</p>
+  <p><strong>Nom :</strong> {{ groupe.nom_gr }}</p>
+  <div style="display:flex; gap:12px; justify-content:center; margin-top:18px;">
+      <a href="/ecole/update_groupe/{{groupe.id_gr}}/" class="btn-action">Modifier</a>
+      <a href="{% url 'liste_groupes' %}" class="btn-action">Retour à la liste</a>
+      <a href="{% url 'index' %}" class="btn-action">🏠 Accueil</a>
+  </div>
+</div>
+</body>

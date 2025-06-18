@@ -1,0 +1,26 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'ecole/style.css' %}">
+    <meta charset="UTF-8">
+    <title>Détail de l'Absence</title>
+</head>
+<body>
+<div class="detail-box">
+  <h2>Détail de l'Absence</h2>
+  <p><strong>ID :</strong> {{ absence.id_absence }}</p>
+  <p><strong>Étudiant :</strong> {{ absence.etudiants }}</p>
+  <p><strong>Cours :</strong> {{ absence.cours }}</p>
+  <p><strong>Justifiée :</strong> {% if absence.justifie == 1 %}Oui{% else %}Non{% endif %}</p>
+  <p><strong>Justification :</strong>
+    {% if absence.justification %}
+      <a href="/media/{{ absence.justification }}" download>Télécharger</a>
+    {% else %}
+      Aucun justificatif
+    {% endif %}
+  </p>
+  <div style="display:flex; gap:12px; justify-content:center; margin-top:18px;">
+      <a href="{% url 'liste_absences' %}" class="btn-action">Retour à la liste</a>
+      <a href="{% url 'index' %}" class="btn-action">🏠 Accueil</a>
+  </div>
+</div>
+</body>
