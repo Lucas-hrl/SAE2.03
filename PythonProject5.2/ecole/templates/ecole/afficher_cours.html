@@ -15,6 +15,7 @@
   <p><strong>Durée :</strong> {{ cours.duree_cours|time:"H:i" }}h</p>
   <div style="display:flex; gap:12px; justify-content:center; margin-top:18px;">
       <a href="{% url 'liste_cours' %}" class="btn-action">Retour à la liste</a>
+      <a href="{% url 'liste_absences_cours' cours.id_cours %}" class="btn-action">Afficher absences de se cours</a>
       <a href="{% url 'index' %}" class="btn-action">🏠 Accueil</a>
   </div>
 </div>
