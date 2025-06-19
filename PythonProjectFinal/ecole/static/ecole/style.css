@@ -1,0 +1,1123 @@
+/* Reset et base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Container principal */
+.accueil-main {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Titre principal */
+.bulle-titre-form {
+    font-size: 2.5em;
+    color: #2c3e50;
+    margin-bottom: 40px;
+    font-weight: 300;
+    letter-spacing: -1px;
+    position: relative;
+}
+
+.bulle-titre-form::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 2px;
+}
+
+/* Grille des boutons principaux */
+.big-btns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.big-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 15px;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.big-menu-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.big-menu-btn:hover::before {
+    left: 100%;
+}
+
+.big-menu-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.big-menu-btn:active {
+    transform: translateY(-2px);
+}
+
+/* Section ajout rapide */
+.ajout-rapide-titre {
+    font-size: 1.3em;
+    color: #34495e;
+    margin-bottom: 20px;
+    font-weight: 600;
+    position: relative;
+}
+
+.ajout-rapide-titre::before {
+    content: '⚡';
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.ajout-rapide {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.quick-btn {
+    padding: 12px 24px;
+    background: rgba(52, 73, 94, 0.1);
+    color: #2c3e50;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 0.9em;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    backdrop-filter: blur(5px);
+}
+
+.quick-btn:hover {
+    background: rgba(102, 126, 234, 0.1);
+    border-color: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+}
+
+.quick-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .accueil-main {
+        padding: 30px 20px;
+    }
+    
+    .bulle-titre-form {
+        font-size: 2em;
+    }
+    
+    .big-btns {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .big-menu-btn {
+        padding: 20px 15px;
+        font-size: 1em;
+    }
+    
+    .ajout-rapide {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .quick-btn {
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bulle-titre-form {
+        font-size: 1.6em;
+    }
+    
+    .big-menu-btn {
+        padding: 18px 12px;
+        font-size: 0.95em;
+    }
+    
+    .ajout-rapide-titre {
+        font-size: 1.1em;
+    }
+    
+    .quick-btn {
+        font-size: 0.85em;
+        padding: 10px 20px;
+    }
+}
+
+/* Animation pour les boutons au chargement */
+.big-menu-btn {
+    animation: slideInFromBottom 0.6s ease-out forwards;
+    animation-delay: calc(var(--delay, 0) * 0.1s);
+}
+
+.big-menu-btn:nth-child(1) { --delay: 1; }
+.big-menu-btn:nth-child(2) { --delay: 2; }
+.big-menu-btn:nth-child(3) { --delay: 3; }
+.big-menu-btn:nth-child(4) { --delay: 4; }
+.big-menu-btn:nth-child(5) { --delay: 5; }
+
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Effet de focus pour l'accessibilité */
+.big-menu-btn:focus,
+.quick-btn:focus {
+    outline: 3px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* Amélioration du contraste pour les emojis */
+.big-menu-btn {
+    gap: 10px;
+}
+
+/* Effet de survol subtil pour le container principal */
+.accueil-main:hover {
+    transform: translateY(-2px);
+    transition: transform 0.3s ease;
+}
+
+/* ===== STYLES POUR LES PAGES DE LISTE ===== */
+
+/* Container pour les pages de liste */
+.liste-main {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    margin: 20px auto;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+/* Header de la page liste */
+.liste-main h2 {
+    color: #2c3e50;
+    font-weight: 300;
+    font-size: 2em;
+    letter-spacing: -0.5px;
+    margin: 0;
+    position: relative;
+}
+
+.liste-main h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 2px;
+}
+
+/* Boutons d'action */
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+    border: none;
+    cursor: pointer;
+    min-width: 44px;
+    min-height: 44px;
+}
+
+.btn-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+}
+
+.btn-action:active {
+    transform: translateY(0);
+}
+
+/* Bouton d'ajout spécial */
+.btn-action[href*="ajouter"] {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3);
+}
+
+.btn-action[href*="ajouter"]:hover {
+    background: linear-gradient(135deg, #218838 0%, #1ea080 100%);
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+}
+
+/* Bouton de suppression */
+.btn-action[href*="supprimer"] {
+    background: linear-gradient(135deg, #dc3545 0%, #e74c3c 100%);
+    box-shadow: 0 3px 10px rgba(220, 53, 69, 0.3);
+}
+
+.btn-action[href*="supprimer"]:hover {
+    background: linear-gradient(135deg, #c82333 0%, #dc2626 100%);
+    box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+}
+
+/* Bouton d'accueil */
+.btn-action[href*="index"] {
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    box-shadow: 0 3px 10px rgba(108, 117, 125, 0.3);
+    padding: 12px 24px;
+    font-size: 15px;
+}
+
+.btn-action[href*="index"]:hover {
+    background: linear-gradient(135deg, #5a6268 0%, #3d4045 100%);
+    box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
+}
+
+/* Liste des éléments */
+.liste-main ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.liste-main li {
+    margin-bottom: 17px;
+    animation: slideInFromLeft 0.6s ease-out forwards;
+    animation-delay: calc(var(--item-delay, 0) * 0.1s);
+}
+
+.liste-main li:nth-child(1) { --item-delay: 1; }
+.liste-main li:nth-child(2) { --item-delay: 2; }
+.liste-main li:nth-child(3) { --item-delay: 3; }
+.liste-main li:nth-child(4) { --item-delay: 4; }
+.liste-main li:nth-child(5) { --item-delay: 5; }
+.liste-main li:nth-child(n+6) { --item-delay: 6; }
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Cards des éléments de liste */
+.liste-main li > div {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 3px 13px rgba(20, 105, 163, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 22px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.liste-main li > div:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(20, 105, 163, 0.15);
+    border-color: rgba(102, 126, 234, 0.2);
+}
+
+/* Contenu des cards */
+.liste-main li > div span:first-child {
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 1.05em;
+}
+
+.liste-main li > div span:last-child {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Message vide */
+.liste-main li[style*="color:#888"] {
+    color: #6c757d !important;
+    text-align: center;
+    font-style: italic;
+    padding: 40px 20px;
+    background: rgba(108, 117, 125, 0.1);
+    border-radius: 15px;
+    border: 2px dashed rgba(108, 117, 125, 0.3);
+}
+
+/* Header flex container */
+.liste-main > div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 27px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Footer container */
+.liste-main > div:last-child {
+    text-align: center;
+    margin-top: 26px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(108, 117, 125, 0.2);
+}
+
+/* Responsive pour les pages de liste */
+@media (max-width: 768px) {
+    .liste-main {
+        margin: 10px;
+        padding: 30px 20px;
+    }
+    
+    .liste-main h2 {
+        font-size: 1.6em;
+    }
+    
+    .liste-main > div:first-child {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+    
+    .liste-main li > div {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .liste-main li > div span:last-child {
+        justify-content: center;
+    }
+    
+    .btn-action {
+        font-size: 13px;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .liste-main h2 {
+        font-size: 1.4em;
+    }
+    
+    .liste-main li > div span:first-child {
+        font-size: 1em;
+    }
+    
+    .btn-action {
+        font-size: 12px;
+        padding: 8px 14px;
+        min-width: 40px;
+        min-height: 40px;
+    }
+}
+
+/* ===== STYLES POUR LES PAGES DE FORMULAIRE ===== */
+
+/* Header des pages de formulaire */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+header h1 {
+    color: #2c3e50;
+    font-size: 2.2em;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: inline-block;
+}
+
+header h1::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 2px;
+}
+
+/* Container du formulaire */
+.form-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+/* Formulaire principal */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Liste des champs de formulaire */
+.form ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form li {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    animation: slideInFromRight 0.6s ease-out forwards;
+    animation-delay: calc(var(--field-delay, 0) * 0.1s);
+}
+
+.form li:nth-child(1) { --field-delay: 1; }
+.form li:nth-child(2) { --field-delay: 2; }
+.form li:nth-child(3) { --field-delay: 3; }
+.form li:nth-child(4) { --field-delay: 4; }
+.form li:nth-child(5) { --field-delay: 5; }
+
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Labels des champs */
+.form label {
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 0.95em;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Champs de saisie */
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"],
+.form input[type="number"],
+.form input[type="date"],
+.form input[type="time"],
+.form textarea,
+.form select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid rgba(108, 117, 125, 0.2);
+    border-radius: 12px;
+    font-size: 1em;
+    font-family: inherit;
+    background: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form input[type="text"]:focus,
+.form input[type="email"]:focus,
+.form input[type="password"]:focus,
+.form input[type="number"]:focus,
+.form input[type="date"]:focus,
+.form input[type="time"]:focus,
+.form textarea:focus,
+.form select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-1px);
+}
+
+/* Textarea spécifique */
+.form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Bouton de soumission */
+.bouton_ajout {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 12px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+    margin-top: 25px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.bouton_ajout:hover {
+    background: linear-gradient(135deg, #218838 0%, #1ea080 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+}
+
+.bouton_ajout:active {
+    transform: translateY(0);
+}
+
+/* Bouton de retour */
+.form-container .btn-action {
+    margin-top: 16px;
+    display: inline-block;
+    text-align: center;
+    min-width: 150px;
+}
+
+/* Messages d'erreur */
+.errorlist {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0 0 0;
+}
+
+.errorlist li {
+    color: #dc3545;
+    font-size: 0.85em;
+    background: rgba(220, 53, 69, 0.1);
+    padding: 8px 12px;
+    border-radius: 8px;
+    border-left: 3px solid #dc3545;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Messages de succès */
+.messages {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.messages li {
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.messages .success {
+    background: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+    border-left: 4px solid #28a745;
+}
+
+.messages .error {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    border-left: 4px solid #dc3545;
+}
+
+.messages .info {
+    background: rgba(23, 162, 184, 0.1);
+    color: #17a2b8;
+    border-left: 4px solid #17a2b8;
+}
+
+/* Responsive pour les formulaires */
+@media (max-width: 768px) {
+    header {
+        padding: 15px 10px;
+        margin-bottom: 20px;
+    }
+    
+    header h1 {
+        font-size: 1.8em;
+    }
+    
+    .form-container {
+        margin: 10px;
+        padding: 30px 20px;
+    }
+    
+    .form input[type="text"],
+    .form input[type="email"],
+    .form input[type="password"],
+    .form input[type="number"],
+    .form input[type="date"],
+    .form input[type="time"],
+    .form textarea,
+    .form select {
+        padding: 10px 14px;
+        font-size: 16px; /* Évite le zoom sur iOS */
+    }
+    
+    .bouton_ajout {
+        padding: 12px 24px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5em;
+        line-height: 1.2;
+    }
+    
+    .form-container {
+        padding: 25px 15px;
+    }
+    
+    .form li {
+        gap: 6px;
+    }
+    
+    .form label {
+        font-size: 0.9em;
+    }
+    
+    .bouton_ajout {
+        width: 100%;
+        padding: 14px;
+        font-size: 0.95em;
+    }
+}
+
+/* Styles pour les champs obligatoires */
+.form label.required::after {
+    content: ' *';
+    color: #dc3545;
+    font-weight: bold;
+}
+
+/* Amélioration de l'accessibilité */
+.form input:invalid {
+    border-color: rgba(220, 53, 69, 0.5);
+}
+
+.form input:valid {
+    border-color: rgba(40, 167, 69, 0.5);
+}
+
+/* Effet de loading sur le bouton */
+.bouton_ajout:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.bouton_ajout:disabled:hover {
+    transform: none;
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+}
+
+/* ===== STYLES POUR LES PAGES DE DÉTAIL AVEC TABLEAUX ===== */
+
+/* Container pour les pages de détail */
+.detail-box {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 20px auto;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+/* Titre des pages de détail */
+.detail-box h1 {
+    color: #2c3e50;
+    font-size: 2.2em;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin: 0 0 30px 0;
+    text-align: center;
+    position: relative;
+}
+
+.detail-box h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 2px;
+}
+
+.detail-box h2 {
+    color: #2c3e50;
+    font-size: 1.8em;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin: 0 0 20px 0;
+    text-align: center;
+    position: relative;
+}
+
+.detail-box h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 2px;
+}
+
+/* Informations de l'étudiant/cours */
+.detail-box p {
+    margin: 12px 0;
+    font-size: 1.1em;
+    color: #34495e;
+    padding: 8px 0;
+}
+
+.detail-box p strong {
+    color: #2c3e50;
+    font-weight: 600;
+    display: inline-block;
+    min-width: 100px;
+}
+
+/* Styles des tableaux */
+.detail-box table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.detail-box thead {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.detail-box thead th {
+    color: white;
+    font-weight: 600;
+    padding: 18px 15px;
+    text-align: left;
+    font-size: 1em;
+    letter-spacing: 0.5px;
+}
+
+.detail-box tbody tr {
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.detail-box tbody tr:hover {
+    background: rgba(102, 126, 234, 0.05);
+    transform: translateX(5px);
+}
+
+.detail-box tbody tr:last-child {
+    border-bottom: none;
+}
+
+.detail-box tbody td {
+    padding: 15px;
+    color: #2c3e50;
+    font-size: 0.95em;
+    vertical-align: middle;
+}
+
+/* Liens dans les tableaux */
+.detail-box table a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: rgba(102, 126, 234, 0.1);
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.detail-box table a:hover {
+    background: rgba(102, 126, 234, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Cellules de statut */
+.detail-box tbody td:nth-child(3) {
+    font-weight: 600;
+}
+
+/* Indicateur "Oui" pour justifié */
+.detail-box tbody tr:has(td:nth-child(3):contains("Oui")) td:nth-child(3) {
+    color: #28a745;
+}
+
+/* Indicateur "Non" pour non justifié */
+.detail-box tbody tr:has(td:nth-child(3):contains("Non")) td:nth-child(3) {
+    color: #dc3545;
+}
+
+/* Messages vides dans les tableaux */
+.detail-box tbody tr:only-child td[colspan] {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    padding: 40px 20px;
+    background: rgba(108, 117, 125, 0.1);
+}
+
+/* Container des boutons de navigation */
+.detail-box .nav-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(108, 117, 125, 0.2);
+}
+
+/* Section d'informations */
+.detail-info {
+    background: rgba(102, 126, 234, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-left: 4px solid #667eea;
+}
+
+/* Responsive pour les pages de détail */
+@media (max-width: 768px) {
+    .detail-box {
+        margin: 10px;
+        padding: 30px 20px;
+    }
+    
+    .detail-box h1 {
+        font-size: 1.8em;
+    }
+    
+    .detail-box h2 {
+        font-size: 1.5em;
+    }
+    
+    .detail-box p {
+        font-size: 1em;
+    }
+    
+    .detail-box p strong {
+        min-width: 80px;
+        font-size: 0.9em;
+    }
+    
+    /* Tableau responsive */
+    .detail-box table {
+        font-size: 0.9em;
+    }
+    
+    .detail-box thead th {
+        padding: 12px 8px;
+        font-size: 0.85em;
+    }
+    
+    .detail-box tbody td {
+        padding: 12px 8px;
+        font-size: 0.85em;
+    }
+    
+    .detail-box .nav-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .detail-box .nav-buttons .btn-action {
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .detail-box h1 {
+        font-size: 1.5em;
+        line-height: 1.2;
+    }
+    
+    .detail-box h2 {
+        font-size: 1.3em;
+        line-height: 1.2;
+    }
+    
+    /* Tableau très petit écran */
+    .detail-box table {
+        font-size: 0.8em;
+    }
+    
+    .detail-box thead th {
+        padding: 10px 6px;
+        font-size: 0.8em;
+    }
+    
+    .detail-box tbody td {
+        padding: 10px 6px;
+        font-size: 0.8em;
+    }
+    
+    .detail-box p strong {
+        display: block;
+        margin-bottom: 5px;
+        min-width: auto;
+    }
+}
+
+/* Animation pour les lignes du tableau */
+.detail-box tbody tr {
+    animation: slideInFromBottom 0.6s ease-out forwards;
+    animation-delay: calc(var(--row-delay, 0) * 0.1s);
+}
+
+.detail-box tbody tr:nth-child(1) { --row-delay: 1; }
+.detail-box tbody tr:nth-child(2) { --row-delay: 2; }
+.detail-box tbody tr:nth-child(3) { --row-delay: 3; }
+.detail-box tbody tr:nth-child(4) { --row-delay: 4; }
+.detail-box tbody tr:nth-child(5) { --row-delay: 5; }
+.detail-box tbody tr:nth-child(n+6) { --row-delay: 6; }
+
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Amélioration des couleurs pour les statuts */
+.status-oui {
+    color: #28a745 !important;
+    font-weight: 600;
+}
+
+.status-non {
+    color: #dc3545 !important;
+    font-weight: 600;
+}
+
+/* Style pour les badges de statut */
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.85em;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.status-badge.justifie {
+    background: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+}
+
+.status-badge.non-justifie {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+}

@@ -1,0 +1,22 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'ecole/style.css' %}">
+    <meta charset="UTF-8">
+    <title>Détail du Cours</title>
+</head>
+<body>
+<div class="detail-box">
+  <h2>Détail du Cours</h2>
+  <p><strong>ID :</strong> {{ cours.id_cours }}</p>
+  <p><strong>Titre :</strong> {{ cours.titre_cours }}</p>
+  <p><strong>Date :</strong> {{ cours.date_cours }}</p>
+  <p><strong>Enseignant :</strong> {{ cours.enseignants }}</p>
+  <p><strong>Groupe :</strong> {{ cours.groupe }}</p>
+  <p><strong>Durée :</strong> {{ cours.duree_cours|time:"H:i" }}h</p>
+  <div style="display:flex; gap:12px; justify-content:center; margin-top:18px;">
+      <a href="{% url 'liste_cours' %}" class="btn-action">Retour à la liste</a>
+      <a href="{% url 'liste_absences_cours' cours.id_cours %}" class="btn-action">Afficher absences de se cours</a>
+      <a href="{% url 'index' %}" class="btn-action">🏠 Accueil</a>
+  </div>
+</div>
+</body>

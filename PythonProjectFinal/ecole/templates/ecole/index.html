@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil gestion des absences</title>
+    <link rel="stylesheet" href="{% static 'ecole/style.css' %}">
+</head>
+<body>
+    <div class="accueil-main">
+        <div class="bulle-titre-form" style="margin-bottom:36px;">
+            Bienvenue sur la <b>Gestion des Absences</b>
+        </div>
+        <div class="big-btns">
+            <a href="{% url 'liste_groupes' %}" class="big-menu-btn">📚 Groupes</a>
+            <a href="{% url 'liste_etudiants' %}" class="big-menu-btn">👩‍🎓 Étudiants</a>
+            <a href="{% url 'liste_enseignants' %}" class="big-menu-btn">👨‍🏫 Enseignants</a>
+            <a href="{% url 'liste_cours' %}" class="big-menu-btn">📖 Cours</a>
+            <a href="{% url 'liste_absences' %}" class="big-menu-btn">📅 Absences</a>
+        </div>
+        <div class="ajout-rapide-titre">Accès direct à l’ajout :</div>
+        <div class="ajout-rapide">
+            <a href="{% url 'ajouter_groupe' %}" class="quick-btn">+ Groupe</a>
+            <a href="{% url 'ajouter_etudiant' %}" class="quick-btn">+ Étudiant</a>
+            <a href="{% url 'ajouter_enseignant' %}" class="quick-btn">+ Enseignant</a>
+            <a href="{% url 'ajouter_cours' %}" class="quick-btn">+ Cours</a>
+            <a href="{% url 'ajouter_absence' %}" class="quick-btn">+ Absence</a>
+        </div>
+    </div>
+</body>
+</html>

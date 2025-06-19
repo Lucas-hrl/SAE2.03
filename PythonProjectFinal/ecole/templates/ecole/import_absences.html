@@ -1,0 +1,22 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'ecole/style.css' %}">
+    <meta charset="UTF-8">
+    <title>Importer des Absences (CSV)</title>
+</head>
+{% extends "ecole/base.html" %}
+{% block content %}
+<div class="detail-box" style="max-width:500px;margin:auto;">
+  <h2 style="margin-bottom:25px;">Importer des Absences (CSV)</h2>
+  <form method="post" enctype="multipart/form-data" style="margin-bottom:16px;">
+    {% csrf_token %}
+    <input type="file" name="csv_file" required class="input-file" style="margin-bottom:12px;">
+    <button type="submit" class="btn-action" style="margin-left:8px;">📥 Importer</button>
+  </form>
+  <div style="margin-bottom:14px;">
+    <b>Format attendu :</b>
+    <code style="background:#f6faff;border-radius:8px;padding:2px 7px;">id_etu,id_cours,justifie,justification</code>
+  </div>
+  <a href="{% url 'liste_absences' %}" class="btn-action">Retour aux absences</a>
+</div>
+{% endblock %}
