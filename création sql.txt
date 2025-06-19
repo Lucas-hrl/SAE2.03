@@ -1,0 +1,59 @@
+create database gestion_absence;
+use gestion_absence;
+
+
+CREATE TABLE groupe (
+  id_gr INT AUTO_INCREMENT PRIMARY KEY,
+  nom_gr VARCHAR(100) NOT NULL
+);
+ 
+CREATE TABLE etudiants (
+  id_etu INT AUTO_INCREMENT PRIMARY KEY,
+  nom_etu VARCHAR(100) NOT NULL,
+  prenom_etu VARCHAR(100) NOT NULL,
+  mail_etu VARCHAR(150) UNIQUE NOT NULL,
+  groupe INT,
+  photo VARCHAR(255),
+  FOREIGN KEY (groupe) REFERENCES groupe(id_gr) ON DELETE SET NULL
+);
+ 
+CREATE TABLE enseignants (
+  id_ens INT AUTO_INCREMENT PRIMARY KEY,
+  nom_ens VARCHAR(100) NOT NULL,
+  prenom_ens VARCHAR(100) NOT NULL,
+  mail_ens VARCHAR(150) UNIQUE NOT NULL
+);
+ 
+CREATE TABLE cours (
+  id_cours INT AUTO_INCREMENT PRIMARY KEY,
+  titre_cours VARCHAR(150) NOT NULL,
+  date_cours DATE NOT NULL,
+  enseignants INT,
+  groupe INT,
+  duree_cours TIME,
+  FOREIGN KEY (enseignants) REFERENCES enseignants(id_ens) ON DELETE SET NULL,
+  FOREIGN KEY (groupe) REFERENCES groupe(id_gr) ON DELETE SET NULL
+);
+ 
+ 
+CREATE TABLE absences (
+  id_absence INT AUTO_INCREMENT PRIMARY KEY,
+  etudiants INT,
+  cours INT,
+  justifie BOOLEAN DEFAULT FALSE,
+  justification VARCHAR(255),
+  FOREIGN KEY (etudiants) REFERENCES etudiants(id_etu) ON DELETE CASCADE,
+  FOREIGN KEY (cours) REFERENCES cours(id_cours) ON DELETE CASCADE
+);
+
+
+
+peuplement : 
+
+insert into groupe values (1,'groupe_1');
+insert into etudiants values (1,'legoat','toto','toto@uha.fr',1,'http://toto.img');
+insert into enseignants values (1,'johnson','patrick','patrick.johnson@uha.fr');
+insert into cours values (1,'reseaux','2025-06-12',1,1,'01:30:00');
+insert into absences values (1,1,1,FALSE,'http://justificatif.pdf');
+
+
